@@ -1,2 +1,2 @@
 # SpaceInvader
-Space invader en mode console
+Space invader en mode console (C#)
