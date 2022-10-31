@@ -13,12 +13,12 @@ namespace Test
             byte Y = 10;
             Alien alien = new Alien();
             alien.location(X, Y);
-            for(int i = 0; i < 5; i++)
+            for (int i = 0; i < 5; i++)
             {
-                alien.location(X--, Y); 
+                alien.location(X--, Y);
             }
-            Assert.AreEqual(X--, Y) ;
-            
+            Assert.AreEqual(X--, Y);
+
         }
 
         [TestMethod]
@@ -38,12 +38,12 @@ namespace Test
             switch (Console.ReadKey().Key)
             {
                 case ConsoleKey.Spacebar:
-                    
+
                     Shoot shoot = new Shoot();
                     spaceBar = true;
                     break;
             }
-            Assert.AreEqual(true,spaceBar);
+            Assert.AreEqual(true, spaceBar);
         }
 
         [TestMethod]

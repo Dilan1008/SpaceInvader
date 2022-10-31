@@ -49,8 +49,7 @@ do
     Console.WriteLine("\t\t\t\t\t\t" + @" | |___ >  <| | |_ ");
     Console.WriteLine("\t\t\t\t\t\t" + @" |_____/_/\_\_|\__|");
 
-    Console.SetCursorPosition(0, 0);
-    Console.SetCursorPosition(0, 3);
+    Console.SetCursorPosition(3, 3);
     bytY += myList.Count;
     Console.SetCursorPosition(bytX, (myList.Count + bytY));
     Console.Write(stgArrow);
@@ -66,7 +65,7 @@ do
         case ConsoleKey.DownArrow:
 
             bytY = bytY + 6;
-            if(bytY == 17)
+            if (bytY == 17)
             {
                 bytY = bytY + 7;
             }
