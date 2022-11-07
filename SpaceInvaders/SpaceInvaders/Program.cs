@@ -1,7 +1,15 @@
 ﻿List<int> myList = new List<int>();
 string stgArrow = "-->";
+string Spaceship1 = " " + " " + " " + " " + " " + " " + "▄";
+string Spaceship2 = " " + " " + " " + " " + " " + "███";
+string Spaceship3 = "▄███████████▄";
+string Spaceship4 = "█████████████";
+string Spaceship5 = "█████████████";
+int screenWidth = 125;
+int screenHeight = 40;
 int bytX = 40;
 int bytY = 10;
+int alienPosX = 65;
 byte Enter;
 
 do
@@ -9,7 +17,8 @@ do
     do
     {
         Console.Clear();
-        
+
+        Console.SetWindowSize(screenWidth, screenHeight);
         Console.WriteLine("\t ███████ ██████   █████   ██████ ███████     ██ ███    ██ ██    ██  █████  ██████  ███████ ██████  ███████ ");
         Console.WriteLine("\t ██      ██   ██ ██   ██ ██      ██          ██ ████   ██ ██    ██ ██   ██ ██   ██ ██      ██   ██ ██      ");
         Console.WriteLine("\t ███████ ██████  ███████ ██      █████       ██ ██ ██  ██ ██    ██ ███████ ██   ██ █████   ██████  ███████ ");
@@ -96,13 +105,50 @@ do
 
     do
     {
-        if(bytY == 10)
+
+        if (bytY == 10)
         {
+            Console.SetWindowSize(screenWidth + 20, screenHeight + 20);
             Console.Clear();
-            Console.WriteLine("Vous êtes dans le jeux");
+            Console.SetCursorPosition(alienPosX, 52);
+            Console.WriteLine(Spaceship1);
+            Console.SetCursorPosition(alienPosX, 53);
+            Console.WriteLine(Spaceship2);
+            Console.SetCursorPosition(alienPosX, 54);
+            Console.WriteLine(Spaceship3);
+            Console.SetCursorPosition(alienPosX, 55);
+            Console.WriteLine(Spaceship4);
+            Console.SetCursorPosition(alienPosX, 56);
+            Console.WriteLine(Spaceship5);
         }
 
-    } while (Console.ReadKey().Key != ConsoleKey.Enter);
+        switch (Console.ReadKey().Key)
+        {
+            case ConsoleKey.LeftArrow:
+
+                alienPosX = alienPosX - 4;
+                if(alienPosX < 2)
+                {
+                    alienPosX = 2;
+                }
+                break;
+
+            case ConsoleKey.RightArrow:
+
+                alienPosX = alienPosX + 4;
+                if(alienPosX > 130)
+                {
+                    alienPosX = 130;
+                }
+                break;
+
+            case ConsoleKey.Enter:
+
+                Enter = 2;
+                break;
+        }
+
+    } while (Enter != 2);
 
 }while (true);
 
