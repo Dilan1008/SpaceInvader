@@ -1,4 +1,10 @@
-﻿List<int> myList = new List<int>();
+﻿/* 
+    Auteur : Dilan Morais Pinheiro
+    Date : 07.11.2022
+    Description : 
+*/
+
+List<int> myList = new List<int>();
 string stgArrow = "-->";
 string Spaceship1 = " " + " " + " " + " " + " " + " " + "▄";
 string Spaceship2 = " " + " " + " " + " " + " " + "███";
@@ -16,8 +22,10 @@ do
 {
     do
     {
+        // Clear la console
         Console.Clear();
 
+        // Affiche le menu
         Console.SetWindowSize(screenWidth, screenHeight);
         Console.WriteLine("\t ███████ ██████   █████   ██████ ███████     ██ ███    ██ ██    ██  █████  ██████  ███████ ██████  ███████ ");
         Console.WriteLine("\t ██      ██   ██ ██   ██ ██      ██          ██ ████   ██ ██    ██ ██   ██ ██   ██ ██      ██   ██ ██      ");
@@ -59,9 +67,6 @@ do
         Console.WriteLine("\t\t\t\t\t\t" + @" | |___ >  <| | |_ ");
         Console.WriteLine("\t\t\t\t\t\t" + @" |_____/_/\_\_|\__|");
 
-        /*Console.SetCursorPosition(0, 3);
-        Console.SetCursorPosition(0, 3);
-        bytY += myList.Count;*/
         Console.SetCursorPosition(bytX, (myList.Count + bytY));
         Console.Write(stgArrow);
 
@@ -103,6 +108,12 @@ do
         }
     } while (Enter != 1);
 
+    SpaceShipMove();
+
+}while (true);
+
+void SpaceShipMove()
+{
     do
     {
 
@@ -127,7 +138,7 @@ do
             case ConsoleKey.LeftArrow:
 
                 alienPosX = alienPosX - 4;
-                if(alienPosX < 2)
+                if (alienPosX < 2)
                 {
                     alienPosX = 2;
                 }
@@ -136,7 +147,7 @@ do
             case ConsoleKey.RightArrow:
 
                 alienPosX = alienPosX + 4;
-                if(alienPosX > 130)
+                if (alienPosX > 130)
                 {
                     alienPosX = 130;
                 }
@@ -149,8 +160,6 @@ do
         }
 
     } while (Enter != 2);
-
-}while (true);
-
+}
 
 
