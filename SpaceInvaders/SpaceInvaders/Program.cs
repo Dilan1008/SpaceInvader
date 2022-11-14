@@ -107,8 +107,15 @@ do
 
         }
     } while (Enter != 1);
+    if(bytY == 10)
+    {
+        SpaceShipMove();
+    }
+    if(bytY == 16)
+    {
+        Settings();
+    }
 
-    SpaceShipMove();
 
 }while (true);
 
@@ -116,9 +123,6 @@ void SpaceShipMove()
 {
     do
     {
-
-        if (bytY == 10)
-        {
             Console.SetWindowSize(screenWidth + 20, screenHeight + 20);
             Console.Clear();
             Console.SetCursorPosition(alienPosX, 52);
@@ -131,7 +135,7 @@ void SpaceShipMove()
             Console.WriteLine(Spaceship4);
             Console.SetCursorPosition(alienPosX, 56);
             Console.WriteLine(Spaceship5);
-        }
+
 
         switch (Console.ReadKey().Key)
         {
@@ -161,5 +165,25 @@ void SpaceShipMove()
 
     } while (Enter != 2);
 }
+void Settings()
+{
+    do
+    {
+        Console.Clear();
+        Console.WriteLine("  ____             ");
+        Console.WriteLine("  / ___|  ___  _ __  ");
+        Console.WriteLine(@" \___ \ / _ \| '_ \ ");
+        Console.WriteLine("   ___) | (_) | | | |");
+        Console.WriteLine(@" |____/ \___/|_| |_|");
 
+        switch (Console.ReadKey().Key)
+        {
+            case ConsoleKey.Enter:
 
+                Enter = 2;
+                break;
+        }
+
+    } while (Enter != 2);
+
+}
