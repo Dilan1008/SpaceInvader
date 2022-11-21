@@ -6,16 +6,17 @@
 
 List<int> myList = new List<int>();
 string stgArrow = "-->";
-string Spaceship1 = " " + " " + " " + " " + " " + " " + "▄";
+/*string Spaceship1 = " " + " " + " " + " " + " " + " " + "▄";
 string Spaceship2 = " " + " " + " " + " " + " " + "███";
 string Spaceship3 = "▄███████████▄";
 string Spaceship4 = "█████████████";
-string Spaceship5 = "█████████████";
+string Spaceship5 = "█████████████";*/
 int screenWidth = 125;
 int screenHeight = 40;
 int bytX = 40;
 int bytY = 10;
 int alienPosX = 65;
+const int alienPosY = 52;
 byte Enter;
 
 do
@@ -107,6 +108,7 @@ do
 
         }
     } while (Enter != 1);
+    Console.Clear();
     if(bytY == 10)
     {
         SpaceShipMove();
@@ -119,23 +121,33 @@ do
 
 }while (true);
 
+void spaceShip()
+{
+    Console.WriteLine(" " + " " + " " + " " + " " + " " + "▄");
+    Console.WriteLine(" " + " " + " " + " " + " " + "███");
+    Console.WriteLine("▄███████████▄");
+    Console.WriteLine("█████████████");
+    Console.WriteLine("█████████████");
+    Console.MoveBufferArea(0, 0, Console.BufferWidth, Console.BufferHeight, alienPosX, alienPosY);
+}
 void SpaceShipMove()
 {
     do
     {
-            Console.SetWindowSize(screenWidth + 20, screenHeight + 20);
-            Console.Clear();
-            Console.SetCursorPosition(alienPosX, 52);
-            Console.WriteLine(Spaceship1);
-            Console.SetCursorPosition(alienPosX, 53);
-            Console.WriteLine(Spaceship2);
-            Console.SetCursorPosition(alienPosX, 54);
-            Console.WriteLine(Spaceship3);
-            Console.SetCursorPosition(alienPosX, 55);
-            Console.WriteLine(Spaceship4);
-            Console.SetCursorPosition(alienPosX, 56);
-            Console.WriteLine(Spaceship5);
 
+
+        Console.SetWindowSize(screenWidth + 20, screenHeight + 20);
+        /*Console.SetCursorPosition(alienPosX, 52);
+        Console.WriteLine(Spaceship1);
+        Console.SetCursorPosition(alienPosX, 53);
+        Console.WriteLine(Spaceship2);
+        Console.SetCursorPosition(alienPosX, 54);
+        Console.WriteLine(Spaceship3);
+        Console.SetCursorPosition(alienPosX, 55);
+        Console.WriteLine(Spaceship4);
+        Console.SetCursorPosition(alienPosX, 56);
+        Console.WriteLine(Spaceship5);*/
+        spaceShip();
 
         switch (Console.ReadKey().Key)
         {
@@ -170,7 +182,7 @@ void Settings()
     do
     {
         Console.Clear();
-        Console.WriteLine("  ____             ");
+        Console.WriteLine("   ____             ");
         Console.WriteLine("  / ___|  ___  _ __  ");
         Console.WriteLine(@" \___ \ / _ \| '_ \ ");
         Console.WriteLine("   ___) | (_) | | | |");
