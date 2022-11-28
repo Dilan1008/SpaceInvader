@@ -16,7 +16,7 @@ int screenHeight = 40;
 int bytX = 40;
 int bytY = 10;
 int alienPosX = 65;
-const int alienPosY = 52;
+int alienPosY = 52;
 byte Enter;
 
 do
@@ -105,7 +105,6 @@ do
 
                 Enter = 1;
                 break;
-
         }
     } while (Enter != 1);
     Console.Clear();
@@ -117,25 +116,38 @@ do
     {
         Settings();
     }
+    if(bytY == 28)
+    {
+        About();
+    }
+    if(bytY == 34)
+    {
+        Environment.Exit(0);
+    }
+
 
 
 }while (true);
 
 void spaceShip()
 {
+    Console.SetCursorPosition(alienPosX, 52);
     Console.WriteLine(" " + " " + " " + " " + " " + " " + "▄");
+    Console.SetCursorPosition(alienPosX, 53);
     Console.WriteLine(" " + " " + " " + " " + " " + "███");
+    Console.SetCursorPosition(alienPosX, 54);
     Console.WriteLine("▄███████████▄");
+    Console.SetCursorPosition(alienPosX, 55);
     Console.WriteLine("█████████████");
+    Console.SetCursorPosition(alienPosX, 56);
     Console.WriteLine("█████████████");
-    Console.MoveBufferArea(0, 0, Console.BufferWidth, Console.BufferHeight, alienPosX, alienPosY);
+
 }
 void SpaceShipMove()
 {
     do
     {
-
-
+        Console.Clear();
         Console.SetWindowSize(screenWidth + 20, screenHeight + 20);
         /*Console.SetCursorPosition(alienPosX, 52);
         Console.WriteLine(Spaceship1);
@@ -148,54 +160,142 @@ void SpaceShipMove()
         Console.SetCursorPosition(alienPosX, 56);
         Console.WriteLine(Spaceship5);*/
         spaceShip();
+        //Console.MoveBufferArea(0, 0, Console.BufferWidth, Console.BufferHeight, alienPosX, alienPosY);
+        
+        
 
         switch (Console.ReadKey().Key)
         {
             case ConsoleKey.LeftArrow:
 
                 alienPosX = alienPosX - 4;
-                if (alienPosX < 2)
-                {
-                    alienPosX = 2;
-                }
                 break;
 
             case ConsoleKey.RightArrow:
 
                 alienPosX = alienPosX + 4;
-                if (alienPosX > 130)
-                {
-                    alienPosX = 130;
-                }
                 break;
 
             case ConsoleKey.Enter:
 
                 Enter = 2;
                 break;
+
+            case ConsoleKey.Spacebar:
         }
 
     } while (Enter != 2);
 }
 void Settings()
 {
+    int bytSettingsX = 40;
+    int bytSettingsY = 11;
     do
     {
+
         Console.Clear();
-        Console.WriteLine("   ____             ");
-        Console.WriteLine("  / ___|  ___  _ __  ");
-        Console.WriteLine(@" \___ \ / _ \| '_ \ ");
-        Console.WriteLine("   ___) | (_) | | | |");
-        Console.WriteLine(@" |____/ \___/|_| |_|");
+        Console.WriteLine("\t\t\t\t\t\t" + @"  ____       _   _   _                 ");
+        Console.WriteLine("\t\t\t\t\t\t" + @" / ___|  ___| |_| |_(_)_ __   __ _ ___ ");
+        Console.WriteLine("\t\t\t\t\t\t" + @" \___ \ / _ \ __| __| | '_ \ / _` / __|");
+        Console.WriteLine("\t\t\t\t\t\t" + @"  ___) |  __/ |_| |_| | | | | (_| \__ \");
+        Console.WriteLine("\t\t\t\t\t\t" + @" |____/ \___|\__|\__|_|_| |_|\__, |___/");
+        Console.WriteLine("\t\t\t\t\t\t" + @"                             |___/     ");
+        Console.WriteLine("\n\n");
+
+
+        Console.WriteLine("\t\t\t\t\t\t" + "  ____                        _ " + " " + " " + @"   ___  _   _ " + "    /" + @"___  _____ _____ ");
+        Console.WriteLine("\t\t\t\t\t\t" + " / ___|  ___  _   _ _ __   __| |" + " " + " " + @"  / _ \| \ | |" + "   /" +  @"/ _ \|  ___|  ___|");
+        Console.WriteLine("\t\t\t\t\t\t" + @" \___ \ / _ \| | | | '_ \ / _` |" + " " + " " + @" | | | |  \| |" + "  /" +  @"| | | | |_  | |_   ");
+        Console.WriteLine("\t\t\t\t\t\t" + "  ___) | (_) | |_| | | | | (_| |" + " " + " " + @" | |_| | |\  |" + " /" +    @" | |_| |  _| |  _|  ");
+        Console.WriteLine("\t\t\t\t\t\t" + @" |____/ \___/ \__,_|_| |_|\__,_|" + " " + " " + @"  \___/|_| \_|" + "/" +    @"   \___/|_|   |_|    ");
+
+        Console.WriteLine("\t\t\t\t\t\t" + " ____  _  __  __ _            _ _         ");
+        Console.WriteLine("\t\t\t\t\t\t" + @"|  _ \(_)/ _|/ _(_) ___ _   _| | |_ _   _ ");
+        Console.WriteLine("\t\t\t\t\t\t" + @"| | | | | |_| |_| |/ __| | | | | __| | | |");
+        Console.WriteLine("\t\t\t\t\t\t" + "| |_| | |  _|  _| | (__| |_| | | |_| |_| |");
+        Console.WriteLine("\t\t\t\t\t\t" + @"|____/|_|_| |_| |_|\___|\__,_|_|\__|\__, |");
+        Console.WriteLine("\t\t\t\t\t\t" + @"                                    |___/ ");
+
+        Console.WriteLine("\t\t\t\t\t\t" + @" _____                ");
+        Console.WriteLine("\t\t\t\t\t\t" + @"| ____|__ _ ___ _   _ ");
+        Console.WriteLine("\t\t\t\t\t\t" + @"|  _| / _` / __| | | |");
+        Console.WriteLine("\t\t\t\t\t\t" + @"| |__| (_| \__ \ |_| |");
+        Console.WriteLine("\t\t\t\t\t\t" + @"|_____\__,_|___/\__, |");
+        Console.WriteLine("\t\t\t\t\t\t" + @"                |___/");
+
+        Console.WriteLine("\t\t\t\t\t\t" + @" _   _               _ ");
+        Console.WriteLine("\t\t\t\t\t\t" + @"| | | | __ _ _ __ __| |");
+        Console.WriteLine("\t\t\t\t\t\t" + @"| |_| |/ _` | '__/ _` |");
+        Console.WriteLine("\t\t\t\t\t\t" + @"|  _  | (_| | | | (_| |");
+        Console.WriteLine("\t\t\t\t\t\t" + @"|_| |_|\__,_|_|  \__,_|");
+
+        Console.SetCursorPosition(bytSettingsX, (myList.Count + bytSettingsY));
+        Console.Write(stgArrow);
 
         switch (Console.ReadKey().Key)
         {
+            case ConsoleKey.UpArrow:
+                bytSettingsY = bytSettingsY - 5;
+
+                if (bytSettingsY < 11)
+                {
+                    bytSettingsY = 11;
+                }
+                break;
+
+            case ConsoleKey.DownArrow:
+
+                bytSettingsY = bytSettingsY + 5;
+                if (bytSettingsY > 16)
+                {
+                    bytSettingsY = 16;
+                }
+                break;
             case ConsoleKey.Enter:
 
+                if(bytSettingsY == 16)
+                {
+                    bytSettingsY = 17;
+                    if(bytSettingsY == 17)
+                    {
+                        bytSettingsY = bytSettingsY + 6;
+                    }
+                }
+                break;
+            case ConsoleKey.Escape:
                 Enter = 2;
                 break;
         }
 
     } while (Enter != 2);
+
+}
+void About()
+{
+    do
+    {
+        Console.Clear();
+        Console.WriteLine("\t\t\t\t\t\t" + @"     _    _                 _   ");
+        Console.WriteLine("\t\t\t\t\t\t" + @"    / \  | |__   ___  _   _| |_ ");
+        Console.WriteLine("\t\t\t\t\t\t" + @"   / _ \ | '_ \ / _ \| | | | __|");
+        Console.WriteLine("\t\t\t\t\t\t" + @"  / ___ \| |_) | (_) | |_| | |_ ");
+        Console.WriteLine("\t\t\t\t\t\t" + @" /_/   \_\_.__/ \___/ \__,_|\__|");
+        Console.WriteLine("\n\n");
+
+        Console.WriteLine("Création d'un programme dans le carde d'un projet");
+        Console.WriteLine("Le but du projet est de prgrammer un jeux intituler SpaceInvaders dans le but est d'éliminer les aliens adverse avant qu'ils ne vous envahisse");
+
+        switch (Console.ReadKey().Key)
+        {
+            case ConsoleKey.Escape :
+                Enter = 2;
+                break;
+        }
+
+
+    } while (Enter != 2);
+}
+void Alien()
+{
 
 }
