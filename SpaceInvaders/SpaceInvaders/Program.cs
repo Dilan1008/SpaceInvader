@@ -11,6 +11,7 @@ string Spaceship2 = " " + " " + " " + " " + " " + "███";
 string Spaceship3 = "▄███████████▄";
 string Spaceship4 = "█████████████";
 string Spaceship5 = "█████████████";*/
+const string SpaceShip = "       ▄\n     ███\n▄███████████▄\n█████████████\n█████████████";
 int screenWidth = 125;
 int screenHeight = 40;
 int bytX = 40;
@@ -110,7 +111,7 @@ do
     Console.Clear();
     if(bytY == 10)
     {
-        SpaceShipMove();
+        SpaceShipKey();
     }
     if(bytY == 16)
     {
@@ -131,38 +132,22 @@ do
 
 void spaceShip()
 {
-    Console.SetCursorPosition(alienPosX, 52);
-    Console.WriteLine(" " + " " + " " + " " + " " + " " + "▄");
-    Console.SetCursorPosition(alienPosX, 53);
-    Console.WriteLine(" " + " " + " " + " " + " " + "███");
-    Console.SetCursorPosition(alienPosX, 54);
-    Console.WriteLine("▄███████████▄");
-    Console.SetCursorPosition(alienPosX, 55);
-    Console.WriteLine("█████████████");
-    Console.SetCursorPosition(alienPosX, 56);
-    Console.WriteLine("█████████████");
-
+    string[] model = SpaceShip.Split("\n");
+    
+    for( int i = 0; i < model.Count(); i++)
+    {
+        Console.SetCursorPosition(alienPosX, alienPosY + i);
+        Console.WriteLine(model[i]);
+    }
 }
-void SpaceShipMove()
+void SpaceShipKey()
 {
     do
     {
         Console.Clear();
         Console.SetWindowSize(screenWidth + 20, screenHeight + 20);
-        /*Console.SetCursorPosition(alienPosX, 52);
-        Console.WriteLine(Spaceship1);
-        Console.SetCursorPosition(alienPosX, 53);
-        Console.WriteLine(Spaceship2);
-        Console.SetCursorPosition(alienPosX, 54);
-        Console.WriteLine(Spaceship3);
-        Console.SetCursorPosition(alienPosX, 55);
-        Console.WriteLine(Spaceship4);
-        Console.SetCursorPosition(alienPosX, 56);
-        Console.WriteLine(Spaceship5);*/
         spaceShip();
-        //Console.MoveBufferArea(0, 0, Console.BufferWidth, Console.BufferHeight, alienPosX, alienPosY);
-        
-        
+
 
         switch (Console.ReadKey().Key)
         {
@@ -182,6 +167,7 @@ void SpaceShipMove()
                 break;
 
             case ConsoleKey.Spacebar:
+                break;
         }
 
     } while (Enter != 2);
