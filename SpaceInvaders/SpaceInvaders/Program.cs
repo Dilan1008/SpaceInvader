@@ -119,33 +119,33 @@ do
         }
     } while (Enter != 1);
     Console.Clear();
-    if(bytY == 10)
+    if (bytY == 10)
     {
         SpaceShipKey();
         //AlienConstruct();
     }
-    if(bytY == 16)
+    if (bytY == 16)
     {
         Settings();
     }
-    if(bytY == 28)
+    if (bytY == 28)
     {
         About();
     }
-    if(bytY == 34)
+    if (bytY == 34)
     {
         Environment.Exit(0);
     }
 
 
 
-}while (true);
+} while (true);
 
 void spaceShip()
 {
     string[] model = SpaceShip.Split("\n");
-    
-    for( int i = 0; i < model.Count(); i++)
+
+    for (int i = 0; i < model.Count(); i++)
     {
         Console.SetCursorPosition(ShipPosX, ShipPosY + i);
         Console.WriteLine(model[i]);
@@ -170,14 +170,14 @@ void SpaceShipKey()
         Console.SetWindowSize(screenWidth + 10, screenHeight + 10);
         //Console.SetCursorPosition(65, 52);
         //Console.WriteLine("--------------------------------------------------");
-        
+
         switch (Console.ReadKey().Key)
         {
             case ConsoleKey.LeftArrow:
 
                 int oldShipXL = ShipPosX;
                 ShipPosX = ShipPosX - 4;
-                if(ShipPosX > 3)
+                if (ShipPosX > 3)
                 {
                     Console.MoveBufferArea(oldShipXL, ShipPosY, 13, 5, ShipPosX, ShipPosY);
                 }
@@ -233,10 +233,10 @@ void Settings()
 
 
         Console.WriteLine("\t\t\t\t\t\t" + "  ____                        _ " + " " + " " + @"   ___  _   _ " + "    /" + @"___  _____ _____ ");
-        Console.WriteLine("\t\t\t\t\t\t" + " / ___|  ___  _   _ _ __   __| |" + " " + " " + @"  / _ \| \ | |" + "   /" +  @"/ _ \|  ___|  ___|");
-        Console.WriteLine("\t\t\t\t\t\t" + @" \___ \ / _ \| | | | '_ \ / _` |" + " " + " " + @" | | | |  \| |" + "  /" +  @"| | | | |_  | |_   ");
-        Console.WriteLine("\t\t\t\t\t\t" + "  ___) | (_) | |_| | | | | (_| |" + " " + " " + @" | |_| | |\  |" + " /" +    @" | |_| |  _| |  _|  ");
-        Console.WriteLine("\t\t\t\t\t\t" + @" |____/ \___/ \__,_|_| |_|\__,_|" + " " + " " + @"  \___/|_| \_|" + "/" +    @"   \___/|_|   |_|    ");
+        Console.WriteLine("\t\t\t\t\t\t" + " / ___|  ___  _   _ _ __   __| |" + " " + " " + @"  / _ \| \ | |" + "   /" + @"/ _ \|  ___|  ___|");
+        Console.WriteLine("\t\t\t\t\t\t" + @" \___ \ / _ \| | | | '_ \ / _` |" + " " + " " + @" | | | |  \| |" + "  /" + @"| | | | |_  | |_   ");
+        Console.WriteLine("\t\t\t\t\t\t" + "  ___) | (_) | |_| | | | | (_| |" + " " + " " + @" | |_| | |\  |" + " /" + @" | |_| |  _| |  _|  ");
+        Console.WriteLine("\t\t\t\t\t\t" + @" |____/ \___/ \__,_|_| |_|\__,_|" + " " + " " + @"  \___/|_| \_|" + "/" + @"   \___/|_|   |_|    ");
 
         Console.WriteLine("\t\t\t\t\t\t" + " ____  _  __  __ _            _ _         ");
         Console.WriteLine("\t\t\t\t\t\t" + @"|  _ \(_)/ _|/ _(_) ___ _   _| | |_ _   _ ");
@@ -282,10 +282,10 @@ void Settings()
                 break;
             case ConsoleKey.Enter:
 
-                if(bytSettingsY == 16)
+                if (bytSettingsY == 16)
                 {
                     bytSettingsY = 17;
-                    if(bytSettingsY == 17)
+                    if (bytSettingsY == 17)
                     {
                         bytSettingsY = bytSettingsY + 6;
                     }
@@ -316,7 +316,7 @@ void About()
 
         switch (Console.ReadKey().Key)
         {
-            case ConsoleKey.Escape :
+            case ConsoleKey.Escape:
                 Enter = 2;
                 break;
         }
@@ -347,16 +347,14 @@ void AlienConstruct(/*int AlienPosX, int AlienPosY*/)
 
     }
 
-     AlienPosX1 = 30;
-     AlienPosX2 = 30;
-     AlienPosX3 = 30;
-     AlienPosX4 = 30;
-     AlienPosX5 = 30;
+    AlienPosX1 = 30;
+    AlienPosX2 = 30;
+    AlienPosX3 = 30;
+    AlienPosX4 = 30;
+    AlienPosX5 = 30;
 
     for (int i = 0; i < 4; i++)
     {
-
-
         Console.SetCursorPosition(AlienPosX1 += 15, 24);
         Console.WriteLine(Alien1);
         Console.SetCursorPosition(AlienPosX2 += 15, 25);
@@ -368,13 +366,11 @@ void AlienConstruct(/*int AlienPosX, int AlienPosY*/)
         Console.SetCursorPosition(AlienPosX5 += 15, 28);
         Console.WriteLine(Alien5);
     }
-    
+
 }
 void Shoot()
 {
-
     //ShootPosY = 50;
-    Console.SetCursorPosition(71, ShootPosY);
-    Console.WriteLine(missile);
-    
+    Console.SetCursorPosition(ShipPosX + 6, ShootPosY);
+    Console.WriteLine(missile);    
 }
