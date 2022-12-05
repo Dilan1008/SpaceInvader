@@ -12,47 +12,6 @@ string Alien3 = "█▀███████▀█";
 string Alien4 = "█ █▀▀▀▀▀█ █";
 string Alien5 = "   ▀▀ ▀▀";
 
-string Alien6 = "  ▀▄   ▄▀";
-string Alien7 = " ▄█▀███▀█▄";
-string Alien8 = "█▀███████▀█";
-string Alien9 = "█ █▀▀▀▀▀█ █";
-string Alien10 = "  ▀▀ ▀▀";
-
-string Alien11 = "  ▀▄   ▄▀";
-string Alien12 = " ▄█▀███▀█▄";
-string Alien13 = "█▀███████▀█";
-string Alien14 = "█ █▀▀▀▀▀█ █";
-string Alien15 = "   ▀▀ ▀▀";
-
-string Alien16 = "  ▀▄   ▄▀";
-string Alien17 = " ▄█▀███▀█▄";
-string Alien18 = "█▀███████▀█";
-string Alien19 = "█ █▀▀▀▀▀█ █";
-string Alien20 = "   ▀▀ ▀▀";
-
-string Alien21 = "  ▀▄   ▄▀";
-string Alien22 = " ▄█▀███▀█▄";
-string Alien23 = "█▀███████▀█";
-string Alien24 = "█ █▀▀▀▀▀█ █";
-string Alien25 = "   ▀▀ ▀▀";
-
-string Alien26 = "  ▀▄   ▄▀";
-string Alien27 = " ▄█▀███▀█▄";
-string Alien28 = "█▀███████▀█";
-string Alien29 = "█ █▀▀▀▀▀█ █";
-string Alien30 = "   ▀▀ ▀▀";
-
-string Alien31 = "  ▀▄   ▄▀";
-string Alien32 = " ▄█▀███▀█▄";
-string Alien33 = "█▀███████▀█";
-string Alien34 = "█ █▀▀▀▀▀█ █";
-string Alien35 = "   ▀▀ ▀▀";
-
-string Alien36 = "  ▀▄   ▄▀";
-string Alien37 = " ▄█▀███▀█▄";
-string Alien38 = "█▀███████▀█";
-string Alien39 = "█ █▀▀▀▀▀█ █";
-string Alien40 = "   ▀▀ ▀▀";
 const string SpaceShip = "      ▄\n     ███\n▄███████████▄\n█████████████\n█████████████";
 int screenWidth = 125;
 int screenHeight = 40;
@@ -60,8 +19,15 @@ int bytX = 40;
 int bytY = 10;
 int ShipPosX = 65;
 int ShipPosY = 52;
-int AlienPosX = 40;
+int AlienPosX = 35;
+int AlienPosX1 = 30;
+int AlienPosX2 = 30;
+int AlienPosX3 = 30;
+int AlienPosX4 = 30;
+int AlienPosX5 = 30;
 int AlienPosY = 30;
+int ShootPosY = 50;
+string missile = "|";
 byte Enter;
 
 do
@@ -198,39 +164,52 @@ void spaceShip()
 }
 void SpaceShipKey()
 {
+    spaceShip();
     do
     {
-        Console.Clear();
         Console.SetWindowSize(screenWidth + 10, screenHeight + 10);
-        spaceShip();
-
-
+        //Console.SetCursorPosition(65, 52);
+        //Console.WriteLine("--------------------------------------------------");
+        
         switch (Console.ReadKey().Key)
         {
             case ConsoleKey.LeftArrow:
 
+                int oldShipXL = ShipPosX;
                 ShipPosX = ShipPosX - 4;
-                if(ShipPosX < 3)
+                if(ShipPosX > 3)
+                {
+                    Console.MoveBufferArea(oldShipXL, ShipPosY, 13, 5, ShipPosX, ShipPosY);
+                }
+                else
                 {
                     ShipPosX = 3;
+                    Console.MoveBufferArea(oldShipXL, ShipPosY, 13, 5, ShipPosX, ShipPosY);
                 }
                 break;
 
             case ConsoleKey.RightArrow:
-
+                int oldShipX = ShipPosX;
                 ShipPosX = ShipPosX + 4;
-                if(ShipPosX > 120)
+                if (ShipPosX! < 120)
+                {
+                    Console.MoveBufferArea(oldShipX, ShipPosY, 13, 5, ShipPosX, ShipPosY);
+                }
+                else
                 {
                     ShipPosX = 120;
+                    Console.MoveBufferArea(oldShipX, ShipPosY, 13, 5, ShipPosX, ShipPosY);
                 }
                 break;
 
-            case ConsoleKey.Enter:
-
-                Enter = 2;
+            case ConsoleKey.Spacebar:
+                Console.WriteLine();
+                Shoot();
                 break;
 
-            case ConsoleKey.Spacebar:
+            case ConsoleKey.Escape:
+
+                Enter = 2;
                 break;
         }
 
@@ -347,91 +326,59 @@ void About()
 }
 void AlienConstruct(/*int AlienPosX, int AlienPosY*/)
 {
-    Console.SetCursorPosition(35, 14);
-    Console.WriteLine(Alien1);
-    Console.SetCursorPosition(35, 15);
-    Console.WriteLine(Alien2);
-    Console.SetCursorPosition(35, 16);
-    Console.WriteLine(Alien3);
-    Console.SetCursorPosition(35, 17);
-    Console.WriteLine(Alien4);
-    Console.SetCursorPosition(35, 18);
-    Console.WriteLine(Alien5);
+    AlienPosX1 = 30;
+    AlienPosX2 = 30;
+    AlienPosX3 = 30;
+    AlienPosX4 = 30;
+    AlienPosX5 = 30;
 
-    Console.SetCursorPosition(50, 14);
-    Console.WriteLine(Alien6);
-    Console.SetCursorPosition(50, 15);
-    Console.WriteLine(Alien7);
-    Console.SetCursorPosition(50, 16);
-    Console.WriteLine(Alien8);
-    Console.SetCursorPosition(50, 17);
-    Console.WriteLine(Alien9);
-    Console.SetCursorPosition(50, 18);
-    Console.WriteLine(Alien10);
+    for (int i = 0; i < 4; i++)
+    {
+        Console.SetCursorPosition(AlienPosX1 += 15, 14);
+        Console.WriteLine(Alien1);
+        Console.SetCursorPosition(AlienPosX2 += 15, 15);
+        Console.WriteLine(Alien2);
+        Console.SetCursorPosition(AlienPosX3 += 15, 16);
+        Console.WriteLine(Alien3);
+        Console.SetCursorPosition(AlienPosX4 += 15, 17);
+        Console.WriteLine(Alien4);
+        Console.SetCursorPosition(AlienPosX5 += 15, 18);
+        Console.WriteLine(Alien5);
 
-    Console.SetCursorPosition(65, 14);
-    Console.WriteLine(Alien11);
-    Console.SetCursorPosition(65, 15);
-    Console.WriteLine(Alien12);
-    Console.SetCursorPosition(65, 16);
-    Console.WriteLine(Alien13);
-    Console.SetCursorPosition(65, 17);
-    Console.WriteLine(Alien14);
-    Console.SetCursorPosition(65, 18);
-    Console.WriteLine(Alien15);
+    }
 
-    Console.SetCursorPosition(80, 14);
-    Console.WriteLine(Alien16);
-    Console.SetCursorPosition(80, 15);
-    Console.WriteLine(Alien17);
-    Console.SetCursorPosition(80, 16);
-    Console.WriteLine(Alien18);
-    Console.SetCursorPosition(80, 17);
-    Console.WriteLine(Alien19);
-    Console.SetCursorPosition(80, 18);
-    Console.WriteLine(Alien20);
+     AlienPosX1 = 30;
+     AlienPosX2 = 30;
+     AlienPosX3 = 30;
+     AlienPosX4 = 30;
+     AlienPosX5 = 30;
 
-    Console.SetCursorPosition(35, 24);
-    Console.WriteLine(Alien21);
-    Console.SetCursorPosition(35, 25);
-    Console.WriteLine(Alien22);
-    Console.SetCursorPosition(35, 26);
-    Console.WriteLine(Alien23);
-    Console.SetCursorPosition(35, 27);
-    Console.WriteLine(Alien24);
-    Console.SetCursorPosition(35, 28);
-    Console.WriteLine(Alien25);
+    for (int i = 0; i < 4; i++)
+    {
 
-    Console.SetCursorPosition(50, 24);
-    Console.WriteLine(Alien26);
-    Console.SetCursorPosition(50, 25);
-    Console.WriteLine(Alien27);
-    Console.SetCursorPosition(50, 26);
-    Console.WriteLine(Alien28);
-    Console.SetCursorPosition(50, 27);
-    Console.WriteLine(Alien29);
-    Console.SetCursorPosition(50, 28);
-    Console.WriteLine(Alien30);
 
-    Console.SetCursorPosition(65, 24);
-    Console.WriteLine(Alien31);
-    Console.SetCursorPosition(65, 25);
-    Console.WriteLine(Alien32);
-    Console.SetCursorPosition(65, 26);
-    Console.WriteLine(Alien33);
-    Console.SetCursorPosition(65, 27);
-    Console.WriteLine(Alien34);
-    Console.SetCursorPosition(65, 28);
-    Console.WriteLine(Alien35);
+        Console.SetCursorPosition(AlienPosX1 += 15, 24);
+        Console.WriteLine(Alien1);
+        Console.SetCursorPosition(AlienPosX2 += 15, 25);
+        Console.WriteLine(Alien2);
+        Console.SetCursorPosition(AlienPosX3 += 15, 26);
+        Console.WriteLine(Alien3);
+        Console.SetCursorPosition(AlienPosX4 += 15, 27);
+        Console.WriteLine(Alien4);
+        Console.SetCursorPosition(AlienPosX5 += 15, 28);
+        Console.WriteLine(Alien5);
+    }
+    
+}
+void Shoot()
+{
 
-    Console.SetCursorPosition(80, 24);
-    Console.WriteLine(Alien36);
-    Console.SetCursorPosition(80, 25);
-    Console.WriteLine(Alien37);
-    Console.SetCursorPosition(80, 26);
-    Console.WriteLine(Alien38);
-    Console.SetCursorPosition(80, 27);
-    Console.WriteLine(Alien39);
-    Console.SetCursorPosition(80, 28);
-    Console.WriteLine(Alien40);
+    //ShootPosY = 50;
+    Console.SetCursorPosition(71, ShootPosY);
+    Console.WriteLine(missile);
+    for (int i = 0; i < 10; i++)
+    {
+        Console.MoveBufferArea(71, ShootPosY, 1, 2, 71, ShootPosY);
+        ShootPosY = ShootPosY - 4;
+    }
 }
