@@ -376,9 +376,5 @@ void Shoot()
     //ShootPosY = 50;
     Console.SetCursorPosition(71, ShootPosY);
     Console.WriteLine(missile);
-    for (int i = 0; i < 10; i++)
-    {
-        Console.MoveBufferArea(71, ShootPosY, 1, 2, 71, ShootPosY);
-        ShootPosY = ShootPosY - 4;
-    }
+    
 }
