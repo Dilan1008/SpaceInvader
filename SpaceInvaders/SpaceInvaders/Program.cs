@@ -1,4 +1,6 @@
-﻿/* 
+﻿using System.Timers;
+
+/* 
     Auteur : Dilan Morais Pinheiro
     Date : 07.11.2022
     Description : 
@@ -27,6 +29,8 @@ int AlienPosX4 = 30;
 int AlienPosX5 = 30;
 int AlienPosY = 30;
 int ShootPosY = 50;
+int ShootEspacePosY = 50;
+
 string missile = "|";
 byte Enter;
 
@@ -371,6 +375,24 @@ void AlienConstruct(/*int AlienPosX, int AlienPosY*/)
 void Shoot()
 {
     //ShootPosY = 50;
-    Console.SetCursorPosition(ShipPosX + 6, ShootPosY);
-    Console.WriteLine(missile);    
+    
+    Console.WriteLine(missile);
+    System.Timers.Timer aTimer = new System.Timers.Timer(500);
+    aTimer.Elapsed += OnTimedEvent;
+    aTimer.Start();
+
+
+    void OnTimedEvent(Object source, ElapsedEventArgs e)
+    {
+        Console.SetCursorPosition(ShipPosX + 6, ShootPosY);
+        Console.WriteLine(" ");
+        Console.SetCursorPosition(ShipPosX + 6, ShootPosY -= 2);
+        Console.Write(missile);        
+    }
+
+
+
+
+
+
 }
