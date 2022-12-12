@@ -1,11 +1,12 @@
 ﻿using System.Timers;
+using Class;
 
 /* 
     Auteur : Dilan Morais Pinheiro
     Date : 07.11.2022
     Description : 
 */
-
+List<Missile> missiles = new List<Missile>();
 List<int> myList = new List<int>();
 string stgArrow = "-->";
 string Alien1 = "  ▀▄   ▄▀";
@@ -31,7 +32,7 @@ int AlienPosY = 30;
 int ShootPosY = 50;
 int ShootEspacePosY = 50;
 
-string missile = "|";
+string bullet = "|";
 byte Enter;
 
 do
@@ -156,15 +157,6 @@ void spaceShip()
     }
 
     AlienConstruct();
-
-    /*string[] model1 = Alien.Split("\n");
-
-        for (int i = 0; i < model1.Count(); i++)
-        {
-            Console.SetCursorPosition(AlienPosX, AlienPosY + i);
-            Console.WriteLine(model1[i]);
-        }*/
-
 }
 void SpaceShipKey()
 {
@@ -207,8 +199,9 @@ void SpaceShipKey()
                 break;
 
             case ConsoleKey.Spacebar:
-                Console.WriteLine();
-                Shoot();
+
+                ShootShip();
+                
                 break;
 
             case ConsoleKey.Escape:
@@ -372,27 +365,26 @@ void AlienConstruct(/*int AlienPosX, int AlienPosY*/)
     }
 
 }
-void Shoot()
+void ShootShip()
 {
-    //ShootPosY = 50;
-    
-    Console.WriteLine(missile);
-    System.Timers.Timer aTimer = new System.Timers.Timer(500);
-    aTimer.Elapsed += OnTimedEvent;
-    aTimer.Start();
+     System.Timers.Timer aTimer = new System.Timers.Timer(100);
+     aTimer.Elapsed += OnTimedEvent;
+     aTimer.Start();
 
 
-    void OnTimedEvent(Object source, ElapsedEventArgs e)
-    {
-        Console.SetCursorPosition(ShipPosX + 6, ShootPosY);
-        Console.WriteLine(" ");
-        Console.SetCursorPosition(ShipPosX + 6, ShootPosY -= 2);
-        Console.Write(missile);        
-    }
+     void OnTimedEvent(Object source, ElapsedEventArgs e)
+     {
+         Console.SetCursorPosition(ShipPosX + 6, ShootPosY);
+         Console.WriteLine(" ");
+         Console.SetCursorPosition(ShipPosX + 6, ShootPosY -= 2);
+         Console.Write(bullet);
 
-
-
-
-
-
+        if(ShootPosY == 20)
+        {
+            aTimer.Stop();
+            Console.SetCursorPosition(ShipPosX + 6, ShootPosY);
+            Console.WriteLine(" ");
+            ShootPosY = 50;
+        }
+     }
 }

@@ -39,7 +39,7 @@ namespace Test
             {
                 case ConsoleKey.Spacebar:
 
-                    Shoot shoot = new Shoot();
+                    Missile shoot = new Missile();
                     spaceBar = true;
                     break;
             }
