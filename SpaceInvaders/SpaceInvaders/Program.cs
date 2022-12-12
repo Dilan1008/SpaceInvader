@@ -1,11 +1,14 @@
 ﻿using System.Timers;
 using Class;
+using System.Threading;
+using System.Text;
 
 /* 
     Auteur : Dilan Morais Pinheiro
     Date : 07.11.2022
     Description : 
 */
+Console.OutputEncoding = Encoding.Unicode;
 List<Missile> missiles = new List<Missile>();
 List<int> myList = new List<int>();
 string stgArrow = "-->";
@@ -31,6 +34,12 @@ int AlienPosX5 = 30;
 int AlienPosY = 30;
 int ShootPosY = 50;
 int ShootEspacePosY = 50;
+
+int[] yFireMoving = new int[3];
+int[] xFireMoving = new int[3];
+int xFirePos, yFirePos = 0;
+bool isFireExist = false;
+
 
 string bullet = "|";
 byte Enter;
@@ -160,54 +169,98 @@ void spaceShip()
 }
 void SpaceShipKey()
 {
-    spaceShip();
+
     do
     {
+
         Console.SetWindowSize(screenWidth + 10, screenHeight + 10);
         //Console.SetCursorPosition(65, 52);
         //Console.WriteLine("--------------------------------------------------");
-
-        switch (Console.ReadKey().Key)
+        spaceShip();
+        if (Console.KeyAvailable)
         {
-            case ConsoleKey.LeftArrow:
+            ConsoleKeyInfo keyInfo = Console.ReadKey();
+            while (Console.KeyAvailable)
+            {
+                keyInfo = Console.ReadKey();
 
-                int oldShipXL = ShipPosX;
-                ShipPosX = ShipPosX - 4;
-                if (ShipPosX > 3)
-                {
-                    Console.MoveBufferArea(oldShipXL, ShipPosY, 13, 5, ShipPosX, ShipPosY);
-                }
-                else
-                {
-                    ShipPosX = 3;
-                    Console.MoveBufferArea(oldShipXL, ShipPosY, 13, 5, ShipPosX, ShipPosY);
-                }
-                break;
+            }
+            switch (keyInfo.Key)
+            {
+                case ConsoleKey.LeftArrow:
 
-            case ConsoleKey.RightArrow:
-                int oldShipX = ShipPosX;
-                ShipPosX = ShipPosX + 4;
-                if (ShipPosX! < 120)
-                {
-                    Console.MoveBufferArea(oldShipX, ShipPosY, 13, 5, ShipPosX, ShipPosY);
-                }
-                else
-                {
-                    ShipPosX = 120;
-                    Console.MoveBufferArea(oldShipX, ShipPosY, 13, 5, ShipPosX, ShipPosY);
-                }
-                break;
+                    int oldShipXL = ShipPosX;
+                    ShipPosX = ShipPosX - 4;
+                    if (ShipPosX > 3)
+                    {
+                        Console.MoveBufferArea(oldShipXL, ShipPosY, 13, 5, ShipPosX, ShipPosY);
+                    }
+                    else
+                    {
+                        ShipPosX = 3;
+                        Console.MoveBufferArea(oldShipXL, ShipPosY, 13, 5, ShipPosX, ShipPosY);
+                    }
+                    break;
 
-            case ConsoleKey.Spacebar:
+                case ConsoleKey.RightArrow:
+                    int oldShipX = ShipPosX;
+                    ShipPosX = ShipPosX + 4;
+                    if (ShipPosX! < 120)
+                    {
+                        Console.MoveBufferArea(oldShipX, ShipPosY, 13, 5, ShipPosX, ShipPosY);
+                    }
+                    else
+                    {
+                        ShipPosX = 120;
+                        Console.MoveBufferArea(oldShipX, ShipPosY, 13, 5, ShipPosX, ShipPosY);
+                    }
+                    break;
 
-                ShootShip();
-                
-                break;
+                case ConsoleKey.Spacebar:
 
-            case ConsoleKey.Escape:
+                    if (isFireExist == false)
+                    {
+                        xFireMoving[0] = ShipPosX + 6;
+                        yFireMoving[0] = ShipPosY - 1;
+                        isFireExist = true;
+                        ShootShip(xFireMoving[0], yFireMoving[0]);
+                    }
 
-                Enter = 2;
-                break;
+                    break;
+
+                case ConsoleKey.Escape:
+
+                    Enter = 2;
+                    break;
+
+            }
+        }
+
+        Thread.Sleep(20);
+
+        if (yFireMoving[0] != 11 && isFireExist == true)
+        {
+            yFirePos = yFireMoving[0];
+            xFirePos = xFireMoving[0];
+
+            yFireMoving[1] = yFireMoving[0] - 1;
+            yFireMoving[0] = yFireMoving[1];
+
+            xFireMoving[1] = xFireMoving[0];
+            xFireMoving[0] = xFireMoving[1];
+
+            Console.SetCursorPosition(xFirePos, yFirePos);
+            Console.WriteLine(" ");
+
+            ShootShip(xFireMoving[0], yFireMoving[0]);
+        }
+
+        if (yFireMoving[0] == 11)
+        {
+            isFireExist = false;
+
+            Console.SetCursorPosition(xFireMoving[0], yFireMoving[0]);
+            Console.WriteLine(" ");
         }
 
     } while (Enter != 2);
@@ -365,9 +418,9 @@ void AlienConstruct(/*int AlienPosX, int AlienPosY*/)
     }
 
 }
-void ShootShip()
+static void ShootShip(int x, int y)
 {
-     System.Timers.Timer aTimer = new System.Timers.Timer(100);
+    /* System.Timers.Timer aTimer = new System.Timers.Timer(100);
      aTimer.Elapsed += OnTimedEvent;
      aTimer.Start();
 
@@ -386,5 +439,8 @@ void ShootShip()
             Console.WriteLine(" ");
             ShootPosY = 50;
         }
-     }
+     }*/
+
+    Console.SetCursorPosition(x, y);
+    Console.WriteLine("╿");
 }
