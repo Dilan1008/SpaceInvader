@@ -13,10 +13,11 @@ List<Missile> missiles = new List<Missile>();
 List<int> myList = new List<int>();
 string stgArrow = "-->";
 const string Alien1 = "  ▀▄   ▄▀\n ▄█▀███▀█▄\n█▀███████▀█\n█ █▀▀▀▀▀█ █\n   ▀▀ ▀▀";
-//string Alien2 = " ";
-//string Alien3 = "";
-//string Alien4 = "";
-//string Alien5 = "   ";
+//string Alien2 = "  ▀▄   ▄▀";
+//string Alien3 = " ▄█▀███▀█▄";
+//string Alien4 = "█▀███████▀█";
+//string Alien5 = "█ █▀▀▀▀▀█ █";
+//string Alien5 = "   ▀▀ ▀▀";
 
 const string SpaceShip = "      ▄\n     ███\n▄███████████▄\n█████████████\n█████████████";
 int screenWidth = 125;
@@ -36,8 +37,12 @@ int ShootEspacePosY = 50;
 
 int[] yFireMoving = new int[3];
 int[] xFireMoving = new int[3];
-int xFirePos, yFirePos = 0;
 bool isFireExist = false;
+int xFirePos = 0;
+int yFirePos = 0;
+
+int[] xAlienPos = new int[8];
+int[] yAlienPos = new int[8];
 
 /*int[] xFirstLineEnemy = new int[6];
 xFirstLineEnemy[0] = 60; xFirstLineEnemy[1] = 66; xFirstLineEnemy[2] = 72;
@@ -263,7 +268,7 @@ void SpaceShipKey()
 
 
 
-        if (yFireMoving[0] != 11 && isFireExist == true)
+        if (yFireMoving[0] != 11 && isFireExist)
         {
             yFirePos = yFireMoving[0];
             xFirePos = xFireMoving[0];
@@ -286,6 +291,24 @@ void SpaceShipKey()
 
             Console.SetCursorPosition(xFireMoving[0], yFireMoving[0]);
             Console.WriteLine(" ");
+        }
+
+        if (yFireMoving[0] == 11)
+        {
+            int delX = 40;
+            int delY = 14;
+            isFireExist = false;
+            for (int i = 0; i < 5; i++)
+            {
+                Console.SetCursorPosition(delX, delY++);
+                Console.WriteLine("           ");
+                
+            }
+        }
+
+        foreach (int xAlien in xAlienPos)
+        {
+            
         }
 
         /*for (int i = 0; i < xFirstLineEnemy.Length; i++)
@@ -443,6 +466,8 @@ void AlienConstruct(/*int AlienPosX, int AlienPosY*/)
             {
                 Console.SetCursorPosition(AlienPosX, AlienPosY + i);
                 Console.WriteLine(model[i]);
+                xAlienPos[i] = AlienPosX;
+                yAlienPos[i] = AlienPosY;
             }
             AlienPosX += 15;
             /*Console.SetCursorPosition(AlienPosX1 += 15, 14);
@@ -458,9 +483,22 @@ void AlienConstruct(/*int AlienPosX, int AlienPosY*/)
 
         }
         AlienPosX = 40;
-        AlienPosY = 19; 
+        AlienPosY = 19;
+
+        /*if (AlienPosX + AlienPosY == yFirePos)
+        {
+            Console.SetCursorPosition(AlienPosX, AlienPosY);
+            Console.WriteLine("     ");
+            Console.SetCursorPosition(AlienPosX, AlienPosY);
+            Console.WriteLine("     ");
+            Console.SetCursorPosition(AlienPosX, AlienPosY);
+            Console.WriteLine("     ");
+            Console.SetCursorPosition(AlienPosX, AlienPosY);
+            Console.WriteLine("     ");
+        }*/
     }
-    
+
+
 
     /*AlienPosX1 = 30;
     AlienPosX2 = 30;
