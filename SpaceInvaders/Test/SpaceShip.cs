@@ -1,4 +1,9 @@
-﻿namespace Test
+﻿/* 
+    Auteur : Dilan Morais Pinheiro
+    Date : 05.01.2023
+    Description : Test SapceShip
+*/
+namespace Test
 {
     internal class SpaceShip
     {

@@ -1,4 +1,9 @@
-﻿using System;
+﻿/* 
+    Auteur : Dilan Morais Pinheiro
+    Date : 05.01.2023
+    Description : Classe Spaceship
+*/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

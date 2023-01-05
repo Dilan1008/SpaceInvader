@@ -1,4 +1,9 @@
-﻿namespace Class
+﻿/* 
+    Auteur : Dilan Morais Pinheiro
+    Date : 05.01.2023
+    Description : Classe Alien
+*/
+namespace Class
 {
     public class Alien
     {
