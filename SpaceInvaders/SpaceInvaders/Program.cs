@@ -1,77 +1,36 @@
-﻿using System.Timers;
+﻿/* 
+    Auteur : Dilan Morais Pinheiro
+    Date : 07.11.2022
+    Description : Jeu Space Invaders
+*/
+using System.Timers;
 using Class;
 using System.Threading;
 using System.Text;
 
-/* 
-    Auteur : Dilan Morais Pinheiro
-    Date : 07.11.2022
-    Description : 
-*/
-Console.OutputEncoding = Encoding.Unicode;
-List<Missile> missiles = new List<Missile>();
+Console.OutputEncoding = Encoding.Unicode; // Permet d'ajouter certain carachtère
+List<Missile> missiles = new List<Missile>(); // Liste de missile
 List<int> myList = new List<int>();
 string stgArrow = "-->";
-const string Alien1 = "  ▀▄   ▄▀\n ▄█▀███▀█▄\n█▀███████▀█\n█ █▀▀▀▀▀█ █\n   ▀▀ ▀▀";
-//string Alien2 = "  ▀▄   ▄▀";
-//string Alien3 = " ▄█▀███▀█▄";
-//string Alien4 = "█▀███████▀█";
-//string Alien5 = "█ █▀▀▀▀▀█ █";
-//string Alien5 = "   ▀▀ ▀▀";
-
-const string SpaceShip = "      ▄\n     ███\n▄███████████▄\n█████████████\n█████████████";
-int screenWidth = 125;
-int screenHeight = 40;
+const string Alien1 = "  ▀▄   ▄▀\n ▄█▀███▀█▄\n█▀███████▀█\n█ █▀▀▀▀▀█ █\n   ▀▀ ▀▀"; // Design de l'alien
+const string SpaceShip = "      ▄\n     ███\n▄███████████▄\n█████████████\n█████████████"; // Design du vaisseau
+int screenWidth = 125; // Taille de l'écran
+int screenHeight = 40; // Taille de l'écran
 int bytX = 40;
 int bytY = 10;
-int ShipPosX = 65;
-int ShipPosY = 52;
-int AlienPosX = 40;
-int AlienPosY = 14;
-/*int AlienPosX2 = 30;
-int AlienPosX3 = 30;
-int AlienPosX4 = 30;
-int AlienPosX5 = 30;*/
-int ShootPosY = 50;
-int ShootEspacePosY = 50;
+int ShipPosX = 65; // Position X du vaisseau
+int ShipPosY = 52; // Position Y du vaisseau
+int AlienPosX = 40; // Position X de l'alien
+int AlienPosY = 14; // Position Y de l'alien
 
-int[] yFireMoving = new int[3];
-int[] xFireMoving = new int[3];
+int[] yFireMoving = new int[3]; // Position Y du missile
+int[] xFireMoving = new int[3]; // Position X du missile
 bool isFireExist = false;
 int xFirePos = 0;
 int yFirePos = 0;
 
 int[] xAlienPos = new int[8];
 int[] yAlienPos = new int[8];
-
-/*int[] xFirstLineEnemy = new int[6];
-xFirstLineEnemy[0] = 60; xFirstLineEnemy[1] = 66; xFirstLineEnemy[2] = 72;
-xFirstLineEnemy[3] = 78; 
-
-int[] yFirstLineEnemy = new int[7];
-yFirstLineEnemy[0] = 19; yFirstLineEnemy[1] = 19; yFirstLineEnemy[2] = 19;
-yFirstLineEnemy[3] = 19; 
-
-int[] xSecondLineEnemy = new int[6];
-xSecondLineEnemy[0] = 60; xSecondLineEnemy[1] = 66; xSecondLineEnemy[2] = 72;
-xSecondLineEnemy[3] = 78; 
-
-int[] ySecondLineEnemy = new int[7];
-ySecondLineEnemy[0] = 18; ySecondLineEnemy[1] = 18; ySecondLineEnemy[2] = 18;
-ySecondLineEnemy[3] = 18;
-
-int counterForHands = 0;
-
-bool[] destroyEnemy = new bool[6];
-destroyEnemy[0] = false; destroyEnemy[1] = false; destroyEnemy[2] = false;
-destroyEnemy[3] = false; destroyEnemy[4] = false; destroyEnemy[5] = false;
-int[] falseEnemy = new int[6];
-
-bool[] destroyEnemyOfSecond = new bool[6];
-destroyEnemyOfSecond[0] = false; destroyEnemyOfSecond[1] = false; destroyEnemyOfSecond[2] = false;
-destroyEnemyOfSecond[3] = false; destroyEnemyOfSecond[4] = false; destroyEnemyOfSecond[5] = false;*/
-
-
 byte Enter;
 
 do
@@ -129,6 +88,7 @@ do
 
         Enter = 0;
 
+        // Switch qui permet de naviguer dans le menu
         switch (Console.ReadKey().Key)
         {
             case ConsoleKey.UpArrow:
@@ -164,6 +124,8 @@ do
         }
     } while (Enter != 1);
     Console.Clear();
+
+    // Selon la position du curseur cela va afficher une nouvelle fenêtre
     if (bytY == 10)
     {
         SpaceShipKey();
@@ -180,13 +142,12 @@ do
     {
         Environment.Exit(0);
     }
-
-
-
 } while (true);
+
 
 void spaceShip()
 {
+    // Met le vaisseau dans un tableau pour l'afficher correctement 
     string[] model = SpaceShip.Split("\n");
 
     for (int i = 0; i < model.Count(); i++)
@@ -195,17 +156,19 @@ void spaceShip()
         Console.WriteLine(model[i]);
     }
     AlienConstruct();
-    //drawAlineFirstLine(ref xFirstLineEnemy, ref yFirstLineEnemy, ref counterForHands, ref destroyEnemy);
 }
+
+
+/// <summary>
+/// Méthode pour les mouvements du vaisseau
+/// </summary>
 void SpaceShipKey()
 {
 
     do
     {
-
+        // redimensionne la fenêtre de jeu
         Console.SetWindowSize(screenWidth + 10, screenHeight + 10);
-        //Console.SetCursorPosition(65, 52);
-        //Console.WriteLine("--------------------------------------------------");
         spaceShip();
         if (Console.KeyAvailable)
         {
@@ -215,6 +178,7 @@ void SpaceShipKey()
                 keyInfo = Console.ReadKey();
 
             }
+            // Switch qui permet de déplacer le vaisseau de gauche à droite et de tirer un missile 
             switch (keyInfo.Key)
             {
                 case ConsoleKey.LeftArrow:
@@ -223,6 +187,7 @@ void SpaceShipKey()
                     ShipPosX = ShipPosX - 4;
                     if (ShipPosX > 3)
                     {
+                        // Copie une zone source spécifiée du tampon d'écran vers une zone de destination spécifiée 
                         Console.MoveBufferArea(oldShipXL, ShipPosY, 13, 5, ShipPosX, ShipPosY);
                     }
                     else
@@ -247,13 +212,13 @@ void SpaceShipKey()
                     break;
 
                 case ConsoleKey.Spacebar:
-
+                    // Déplace le missile dans un tableau
                     if (isFireExist == false)
                     {
                         xFireMoving[0] = ShipPosX + 6;
                         yFireMoving[0] = ShipPosY - 1;
                         isFireExist = true;
-                        ShootShip(xFireMoving[0], yFireMoving[0]);                        
+                        ShootShip(xFireMoving[0], yFireMoving[0]);
                     }
                     break;
 
@@ -270,6 +235,7 @@ void SpaceShipKey()
 
         if (yFireMoving[0] != 11 && isFireExist)
         {
+            // Met le missile dans un tableau
             yFirePos = yFireMoving[0];
             xFirePos = xFireMoving[0];
 
@@ -279,20 +245,16 @@ void SpaceShipKey()
             xFireMoving[1] = xFireMoving[0];
             xFireMoving[0] = xFireMoving[1];
 
+            // Fait disparaitre le missile quand il touche le font de l'écran
             Console.SetCursorPosition(xFirePos, yFirePos);
             Console.WriteLine(" ");
 
             ShootShip(xFireMoving[0], yFireMoving[0]);
         }
 
-        if (yFireMoving[0] == 11)
-        {
-            isFireExist = false;
 
-            Console.SetCursorPosition(xFireMoving[0], yFireMoving[0]);
-            Console.WriteLine(" ");
-        }
 
+        // Efface un alien quand le missile le touche 
         if (yFireMoving[0] == 14)
         {
             int delX = xFireMoving[0];
@@ -302,42 +264,15 @@ void SpaceShipKey()
             {
                 Console.SetCursorPosition(delX, delY++);
                 Console.WriteLine("           ");
-                
+
             }
         }
-
-        foreach (int xAlien in xAlienPos)
-        {
-            
-        }
-
-        /*for (int i = 0; i < xFirstLineEnemy.Length; i++)
-        {
-            if (destroyEnemy[i] != true)
-            {
-                if (xFirstLineEnemy[i] <= xFireMoving[0] && xFireMoving[0] <= xFirstLineEnemy[i] + 4 && yFirstLineEnemy[i] == yFireMoving[0])
-                {
-                    Console.SetCursorPosition(xFirstLineEnemy[i], yFirstLineEnemy[i]);
-                    Console.Write("     ");
-
-                    destroyEnemy[i] = true;
-
-                    yFireMoving[0] = 16;
-                    break;
-                }
-            }
-        }
-
-        //check if the enemy line and the player are in the same coordinates
-        if (ShipPosY == yFirstLineEnemy[0])
-        {
-            // this place is death animation
-            Thread.Sleep(200);
-            break;
-        }*/
-
     } while (Enter != 2);
 }
+
+/// <summary>
+/// Méthode pour afficher les settings
+/// </summary>
 void Settings()
 {
     int bytSettingsX = 40;
@@ -422,6 +357,9 @@ void Settings()
     } while (Enter != 2);
 
 }
+/// <summary>
+/// Méthode pour afficher la page about
+/// </summary>
 void About()
 {
     do
@@ -435,7 +373,7 @@ void About()
         Console.WriteLine("\n\n");
 
         Console.WriteLine("Création d'un programme dans le carde d'un projet");
-        Console.WriteLine("Le but du projet est de prgrammer un jeux intituler SpaceInvaders dans le but est d'éliminer les aliens adverse avant qu'ils ne vous envahisse");
+        Console.WriteLine("Le but du projet est de prgrammer un jeu intituler SpaceInvaders dans le but est d'éliminer les aliens adverse avant qu'ils ne vous envahisse");
 
         switch (Console.ReadKey().Key)
         {
@@ -447,16 +385,13 @@ void About()
 
     } while (Enter != 2);
 }
-void AlienConstruct(/*int AlienPosX, int AlienPosY*/)
+/// <summary>
+/// Méthode pour afficher les aliens
+/// </summary>
+void AlienConstruct()
 {
-    /*AlienPosX = 40;
-    AlienPosY = 14; 
-    /*AlienPosX2 = 30;
-    AlienPosX3 = 30;
-    AlienPosX4 = 30;
-    AlienPosX5 = 30;*/
-
-    for(int k = 0; k < 2; k++)
+    // Met les caractère de l'alien dans un tableau pour l'afficher correctement 
+    for (int k = 0; k < 2; k++)
     {
         for (int j = 0; j < 4; j++)
         {
@@ -475,46 +410,12 @@ void AlienConstruct(/*int AlienPosX, int AlienPosY*/)
         AlienPosY = 19;
     }
 }
-void drawAlineFirstLine(ref int[] xFirstLineEnemy, ref int[] yFirstLineEnemy, ref int counter, ref bool[] destroyEnemy)
-{
-    string delAlien = "     ";
-    counter++;
-
-    if(counter % 2 != 0)
-    {
-        for (int i = 0; i < xFirstLineEnemy.Length; i++)
-        {
-            Console.SetCursorPosition(xFirstLineEnemy[i], yFirstLineEnemy[i]);
-
-            if (destroyEnemy[i])
-            {
-                Console.Write("    ");
-            }
-            else
-            {
-                for (int k = 0; k < 2; k++)
-                {
-                    for (int j = 0; j < 4; j++)
-                    {
-                        string[] model = Alien1.Split("\n");
-
-                        for (int f = 0; f < model.Count(); f++)
-                        {
-                            Console.SetCursorPosition(AlienPosX, AlienPosY + f);
-                            Console.WriteLine(model[f]);
-                        }
-                        AlienPosX += 15;
-                    }
-                    AlienPosX = 40;
-                    AlienPosY = 19;
-                }
-            }
-        }
-    }
-
-    }
+/// <summary>
+/// Méthode pour le missile
+/// </summary>
 static void ShootShip(int x, int y)
 {
+    // Afficher le missile selon les cordooné x et y 
     Console.SetCursorPosition(x, y);
     Console.WriteLine("╿");
 }
