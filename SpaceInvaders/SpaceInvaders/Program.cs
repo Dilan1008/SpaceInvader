@@ -144,9 +144,7 @@ do
     }
 } while (true);
 
-/// <summary>
-/// Méthode pour Crée le vaisseau
-/// </summary>
+
 void spaceShip()
 {
     // Met le vaisseau dans un tableau pour l'afficher correctement 
@@ -158,6 +156,17 @@ void spaceShip()
         Console.WriteLine(model[i]);
     }
     AlienConstruct();
+}
+
+void HignScore()
+{
+    Console.WriteLine("Score");
+    Console.WriteLine("Dimitrie : 3000");
+    Console.WriteLine("Alex345 : 500");
+    Console.WriteLine("Fritosse2000 : 1000");
+    Console.WriteLine("FunyBary : 5000");
+    Console.WriteLine("Zboona : 300");
+    Console.WriteLine("YO4N1ST : 100");
 }
 
 
