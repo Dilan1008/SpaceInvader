@@ -144,7 +144,9 @@ do
     }
 } while (true);
 
-
+/// <summary>
+/// Méthode pour Crée le vaisseau
+/// </summary>
 void spaceShip()
 {
     // Met le vaisseau dans un tableau pour l'afficher correctement 
